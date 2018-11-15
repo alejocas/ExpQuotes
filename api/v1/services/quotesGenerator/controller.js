@@ -1,4 +1,4 @@
-const Quote = require('../../models/Quotes');
+const Quote = require('../../models/Quote');
 
 async function generateQuote(require, response) {
     const quote = new Quote();
