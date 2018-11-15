@@ -20,7 +20,10 @@ class Quote {
                 Accept: "application/json"
             }
         });
-        return JSON.parse(gotAnswer.body)[0];
+        const quoteStructure = {
+            quote: JSON.parse(gotAnswer.body)[0].quote
+        };
+        return quoteStructure;
     }
 
     async generateMultipleRandomQuotes({ category, amount }) {
