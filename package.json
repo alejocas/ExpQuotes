@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "got": "^9.3.2",
+    "image-search-google": "^1.0.10",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.4",
     "nodemon": "^1.18.6",

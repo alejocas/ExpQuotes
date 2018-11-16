@@ -1,4 +1,5 @@
-const { got, mashapeKey } = require('../../../config');
+const { got, mashapeKey, imageSearchClient } = require('../../../config');
+const { QuoteEntity } = require('../database/QuoteEntity');
 
 class Quote {
     constructor() {
@@ -15,14 +16,30 @@ class Quote {
         const gotAnswer = await got(specifiedPath, {
             method: 'get',
             headers: {
-                "X-Mashape-Key": mashapeKey,
-                "Content-Type": "application/x-www-form-urlencoded",
-                Accept: "application/json"
+                'X-Mashape-Key': mashapeKey,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Accept: 'application/json'
             }
         });
+        const generatedQuote = `${JSON.parse(gotAnswer.body)[0].quote} - ${JSON.parse(gotAnswer.body)[0].author}`;
+        const images = await imageSearchClient.search(JSON.parse(gotAnswer.body)[0].author, {
+            page: 1,
+            size: 'medium',
+            type: 'face'
+        });
         const quoteStructure = {
-            quote: JSON.parse(gotAnswer.body)[0].quote
+            quote: generatedQuote,
+            image: images[0].url
         };
+        const sqlAnwer = QuoteEntity.findOrCreate({
+            where: {
+                quote: quoteStructure.quote
+            },
+            defaults: {
+                image: quoteStructure.image
+            }
+        })
+        // console.log(`SQL ANSWER: ${sqlAnwer[0]}`);
         return quoteStructure;
     }
 
@@ -36,9 +53,9 @@ class Quote {
         const gotAnswer = await got(specifiedPath, {
             method: 'get',
             headers: {
-                "X-Mashape-Key": mashapeKey,
-                "Content-Type": "application/x-www-form-urlencoded",
-                Accept: "application/json"
+                'X-Mashape-Key': mashapeKey,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Accept: 'application/json'
             }
         });
         return JSON.parse(gotAnswer.body);
