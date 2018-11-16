@@ -15,8 +15,10 @@
     "express": "^4.16.4",
     "got": "^9.3.2",
     "morgan": "^1.9.1",
+    "mysql2": "^1.6.4",
     "nodemon": "^1.18.6",
-    "npm": "^6.4.1"
+    "npm": "^6.4.1",
+    "sequelize": "^4.41.2"
   },
   "devDependencies": {
     "mocha": "^5.2.0"
