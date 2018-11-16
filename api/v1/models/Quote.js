@@ -1,11 +1,21 @@
 const { got, mashapeKey, imageSearchClient } = require('../../../config');
 
 class Quote {
+
+    /**
+     * By default, an instance of the class is assigned a random category; 
+     * with this you can know what category you can ask the external API.
+     */
     constructor() {
         this.category = chooseRandomCategory();
         this.quotesApiPath = `https://andruxnet-random-famous-quotes.p.mashape.com/?cat=${this.category}`;
     }
 
+    /**
+     * This function requests a random quote the API, you can send a JSON with a "category" key 
+     * defined between the "famous | movies" to receive a quote from that specific category.
+     * @param {*} category
+     */
     async generateQuote({ category }) {
         if (typeof category !== 'undefined') {
             this.category = category;
@@ -31,24 +41,6 @@ class Quote {
             image: images[0].url
         };
         return quoteStructure;
-    }
-
-    async generateMultipleRandomQuotes({ category, amount }) {
-        if (typeof category !== 'undefined') {
-            this.category = category;
-            this.quotesApiPath = `https://andruxnet-random-famous-quotes.p.mashape.com/?cat=${this.category}`;
-        }
-        amount = typeof amount !== 'undefined' ? amount : 1;
-        const specifiedPath = `${this.quotesApiPath}&count=${amount}`;
-        const gotAnswer = await got(specifiedPath, {
-            method: 'get',
-            headers: {
-                'X-Mashape-Key': mashapeKey,
-                'Content-Type': 'application/x-www-form-urlencoded',
-                Accept: 'application/json'
-            }
-        });
-        return JSON.parse(gotAnswer.body);
     }
 }
 

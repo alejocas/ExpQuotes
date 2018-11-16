@@ -1,6 +1,9 @@
 const { Sequelize } = require('../../../config');
 const { sequelize } = require('./connection');
 
+/**
+ * Definition of QuoteEntity through the ORM
+ */
 const QuoteEntity = sequelize.define('quote', {
     id: {
         type: Sequelize.INTEGER,

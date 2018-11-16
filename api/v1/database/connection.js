@@ -6,6 +6,9 @@ const {
     Sequelize
 } = require('../../../config');
 
+/**
+ * Instance of Sequelize, is needed to connect with the MYSQL database.
+ */
 const sequelize = new Sequelize(databaseName, databaseUser, databasePassword, {
     host: databaseHost,
     dialect: 'mysql',

@@ -5,7 +5,7 @@ const app = express();
 const port = 49153;
 const morganMode = 'tiny';
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false })); //Allow only Strings and Arrays
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan(morganMode));

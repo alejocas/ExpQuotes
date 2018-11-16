@@ -1,7 +1,8 @@
 const { express } = require('../../../../config');
-const { generateQuote } = require('./controller');
+const { deleteQuote, generateQuote } = require('./controller');
 const router = express.Router();
 
 router.get('/', generateQuote);
+router.delete('/:id',deleteQuote);
 
 module.exports = router;
