@@ -1,5 +1,4 @@
 const { got, mashapeKey, imageSearchClient } = require('../../../config');
-const { QuoteEntity } = require('../database/QuoteEntity');
 
 class Quote {
     constructor() {
@@ -31,15 +30,6 @@ class Quote {
             quote: generatedQuote,
             image: images[0].url
         };
-        const sqlAnwer = QuoteEntity.findOrCreate({
-            where: {
-                quote: quoteStructure.quote
-            },
-            defaults: {
-                image: quoteStructure.image
-            }
-        })
-        // console.log(`SQL ANSWER: ${sqlAnwer[0]}`);
         return quoteStructure;
     }
 
