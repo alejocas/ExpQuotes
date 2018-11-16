@@ -12,7 +12,7 @@ async function generateQuote(require, response) {
             image: generatedQuoteStructure.image
         }
     })
-    .spread((quoteStructure, created) => {
+    .spread((quoteStructure) => {
         response.status(201).send(quoteStructure); 
     });
 }
