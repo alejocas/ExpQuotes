@@ -121,7 +121,7 @@ async function deleteQuote (request, response) {
  *          "image":"https://i.ytimg.com/vi/FSGeskFzE0s/maxresdefault.jpg"
  *      }
  * 
- * @apiError error The quote can't be deleted or the server can't resolve that.
+ * @apiError error The quote can't be finded.
  * 
  * @apiErrorExample Error-Response:
  *      HTTP/1.1 400 BadRequest
