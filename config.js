@@ -14,6 +14,8 @@ const databasePassword = 'T3CH-T3ST#3xp3r1m3nt4l1ty';
 const googleCseIdentifier = '014527640621384399952:aesqve1mayu';
 const googleCseApiKey = 'AIzaSyDwBgLqO9AkTOlFN-y0-wJ_PhPkzr0f44U';
 const mashapeKey = 'SFtwCM9uebmshQXC1eMMUn4V3E3Dp1z7kJVjsnhNY0KcNkerbA';
+const morganMode = 'tiny';
+const port = 49153;
 
 const imageSearchClient = new imageSearch(googleCseIdentifier, googleCseApiKey);
 
@@ -32,5 +34,7 @@ module.exports = {
     databasePassword,
     databaseUser,
     imageSearchClient,
-    mashapeKey
+    mashapeKey,
+    morganMode,
+    port
 }
