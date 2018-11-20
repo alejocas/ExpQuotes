@@ -105,7 +105,7 @@ async function deleteQuote (request, response) {
  * @apiName searchRandomQuoteGeneratedBefore
  * @apiGroup Quotes
  * 
- * @apiDescription You can search a quote with the id, ret.
+ * @apiDescription You can search a quote with the id.
  * 
  * @apiParam {Number} id Identifier of the quote that will be searched
  * 
