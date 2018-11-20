@@ -97,10 +97,52 @@ async function deleteQuote (request, response) {
             errorMsg: error
         });
     })
-    
+}
+
+/**
+ * @api {get} /api/v1/generate-changing-life-quote/:id
+ * @apiVersion 1.0.0
+ * @apiName searchRandomQuoteGeneratedBefore
+ * @apiGroup Quotes
+ * 
+ * @apiDescription You can search a quote with the id, ret.
+ * 
+ * @apiParam {Number} id Identifier of the quote that will be searched
+ * 
+ * @apiSuccess {Number} id Identifier of the quote searched.
+ * @apiSuccess {String} quote Quote and his/her author.
+ * @apiSuccess {String} image URL to an image related to the Quote.
+ * 
+ * @apiSuccessExample Success-Response:
+ *      HTTP/1.1 200 OK 
+ *      {
+ *          "id": 42,
+ *          "quote": "I'm king of the world! - Titanic",
+ *          "image":"https://i.ytimg.com/vi/FSGeskFzE0s/maxresdefault.jpg"
+ *      }
+ * 
+ * @apiError error The quote can't be deleted or the server can't resolve that.
+ * 
+ * @apiErrorExample Error-Response:
+ *      HTTP/1.1 400 BadRequest
+ *      {
+ *          "error": "Quote identified by: 42 doesn't exists, sorry :c"
+ *      }
+ */
+async function searchQuote (request, response) {
+    const quoteId = request.params.id;
+    QuoteEntity.findByPk(Number(quoteId))
+    .then((quote) => {
+        response.status(200).send(quote.dataValues);
+    })
+    .catch((error) => {
+        console.log(error);
+        response.status(200).send({error: `Quote identified by: ${quoteId} doesn't exists, sorry :c`});
+    })
 }
 
 module.exports = {
     deleteQuote,
-    generateQuote
+    generateQuote,
+    searchQuote
 }
